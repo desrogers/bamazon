@@ -1,7 +1,27 @@
+const mysql = require('mysql');
+const inquirer = require ('inquirer');
+const cTable = require('console.table');
+const DBLayer = require('./database.js');
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "root",
+  database: "bamazon_db"
+});
+
+const dbLayer = new DBLayer(connection);
+
+connection.connect(function(err) {
+  if (err) throw err;
+  dbLayer.readProducts();
+});
+
+
 //display all items from database products table (in table(id/name/price/qty) >> using console.table npm package)
 //connection.query(SELECT WHERE…)
 //NEW console.table npm package NEW//
-
 // inquirer
 // inquirer.prompt ().then()
 // .validate()????? For must be a number equal to the number of items in the table printed through console.table
@@ -19,7 +39,7 @@
        // if customerQuantity <= inventory then allow the sale
            // update SQL Database to reflect current inventory
 // ^probably its own function (purchase(itemId, quantity);
-              
+
            // show the total cost of their purchase
                // ParseFloat ( total = itemCost * customer Quantity )
 			//print success message with total cost of purchase
@@ -32,5 +52,4 @@
 
 // else just recall the function
 
-// In both cases - reprompt with print updated table, prompt wouldYouLikeToBuy(); 
-
+// In both cases - reprompt with print updated table, prompt wouldYouLikeToBuy();
