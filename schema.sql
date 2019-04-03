@@ -2,14 +2,14 @@ DROP DATABASE IF EXISTS bamazon_db;
 CREATE DATABASE bamazon_db;
 USE bamazon_db;
 
-DROP TABLE IF EXISTS products;
+-- DROP TABLE IF EXISTS products;
 CREATE TABLE products (
-	productId INT NOT NULL AUTO_INCREMENT,
+	productId INT NOT NULL auto_increment,
 	productName VARCHAR(100),
     departmentName VARCHAR(30),
 	price INT NOT NULL,
 	stock INT NOT NULL DEFAULT 0,
-	PRIMARY KEY (productId)
+	primary key (productId)
 );
 
 CREATE TABLE departments (
