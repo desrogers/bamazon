@@ -10,7 +10,7 @@ const DBLayer = function DBLayer(connection) {
       console.log(inventory);
       callback(err, res);
 
-    })
+    });
   };
 
   this.checkout = function (answer, remainingQty, callback) {
@@ -28,8 +28,8 @@ const DBLayer = function DBLayer(connection) {
       function (err, res) {
         if (err) throw err;
         callback(err, res);
-      })
+      });
   };
-}
+};
 
 module.exports = DBLayer;
