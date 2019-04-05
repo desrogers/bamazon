@@ -7,6 +7,8 @@ const DBLayer = function DBLayer(connection) {
       if (err) throw err;
 
       const inventory = cTable.getTable(res);
+      console.log("\n");
+      
       console.log(inventory);
       callback(err, res);
 

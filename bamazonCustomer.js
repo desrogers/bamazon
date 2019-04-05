@@ -15,7 +15,10 @@ const dbLayer = new DBLayer(connection);
 connection.connect(function (err) {
   if (err) throw err;
 
-  console.log("\nHi! Welcome to BAMazon.js!\n");
+  console.log("\n\n");
+  console.log(`
+          Hi! Welcome to BAMazon!
+  `);
 
   buy();
 });
@@ -98,7 +101,6 @@ function restart() {
     });
 };
 
-// question? [Type ‘Q’ to Quit]. << not in instructions, but how does //program end if we recall wouldYouLikeToBuy()
 function quit() {
   console.log("\nThank you come again!\n");
   connection.end();
