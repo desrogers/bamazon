@@ -20,7 +20,6 @@ connection.connect(function(err) {
 });
 
 function buy() {
-  //display all items from database products table (in table(id/name/price/qty) >> using console.table npm package)
   dbLayer.readProducts(function(err, res) {
     if (err) throw err;
     console.log('hi');
@@ -35,9 +34,9 @@ function buy() {
             name: "qty",
             type: "input",
             message: "How many would you like?",
-            // validate: function (value) {
-            //   // return !isNaN(value) && value > 0;
-            // }
+            validate: function (value) {
+              return !isNaN(value) && value > 0;
+            }
           }
         ])
         .then(function (answer) {
