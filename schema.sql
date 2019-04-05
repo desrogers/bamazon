@@ -4,49 +4,46 @@ USE bamazon_db;
 
 -- DROP TABLE IF EXISTS products;
 CREATE TABLE products (
-	productId INT NOT NULL auto_increment,
-	productName VARCHAR(100),
-    departmentName VARCHAR(30),
+	productId INT PRIMARY KEY AUTO_INCREMENT,
+	product_name VARCHAR(100) NOT NULL,
+	department_name VARCHAR(30) NOT NULL,
 	price INT NOT NULL,
-	stock INT NOT NULL DEFAULT 0,
-	primary key (productId)
+	qty INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE departments (
-	departmentId INT NOT NULL,
-    departmentName VARCHAR(30) NOT NULL,
-    overheadCosts INT NOT NULL DEFAULT 0,
-    primary key (departmentId)
+	departmentId INT PRIMARY KEY NOT NULL,
+    department_name VARCHAR(30) NOT NULL,
+    overheadCosts INT NOT NULL DEFAULT 0
 );
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Socks", "Clothing", 13.95, 50);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Socks", "Clothing", 14, 50);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Wonder Mop", "Clothing", 24.95, 50);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Wonder Mop", "Clothing", 25, 50);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("T-Shirts", "Clothing", 17.95, 50);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("T-Shirt", "Clothing", 17, 50);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Underwear", "Clothing", 9.99, 100);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Underwear", "Clothing", 9, 100);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Pretzels", "Pantry", 4.95, 200);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Pretzels", "Pantry", 4, 200);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Widget", "Miscellaneous", 1.99, 1000);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Widget", "Miscellaneous", 1, 1000);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("USB Cable", "Electronics", 13.95, 150);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("USB Cable", "Electronics", 13, 150);
 
-INSERT INTO products (productName, departmentName, price, stock)
+INSERT INTO products (product_name, department_name, price, qty)
 VALUES ("Earbuds", "Electronics", 24, 220);
 
-INSERT INTO products (productName, departmentName, price, stock)
+INSERT INTO products (product_name, department_name, price, qty)
 VALUES ("Cook Book", "Books", 20, 50);
 
-INSERT INTO products (productName, departmentName, price, stock)
-VALUES ("Book Book", "Books", 10.99, 50);
+INSERT INTO products (product_name, department_name, price, qty)
+VALUES ("Book Book", "Books", 11, 50)
 
-select * FROM products;
