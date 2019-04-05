@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 const inquirer = require ('inquirer');
-const cTable = require('console.table');
 const DBLayer = require('./database.js');
 
 const connection = mysql.createConnection({
@@ -15,41 +14,98 @@ const dbLayer = new DBLayer(connection);
 
 connection.connect(function(err) {
   if (err) throw err;
-  dbLayer.readProducts();
+  console.log("Welcome to Bamazon.js!\n");
+  
+  buy();
 });
 
+function buy() {
+  //display all items from database products table (in table(id/name/price/qty) >> using console.table npm package)
+  dbLayer.readProducts(function(err, res) {
+    if (err) throw err;
+    console.log('hi');
+      inquirer
+        .prompt([
+          {
+            name: "productId",
+            type: "input",
+            message: "What's the ID of the item you would like to buy?"
+          },
+          {
+            name: "qty",
+            type: "input",
+            message: "How many would you like?",
+            // validate: function (value) {
+            //   // return !isNaN(value) && value > 0;
+            // }
+          }
+        ])
+        .then(function (answer) {
+          
+          let storeQty = 0;
+          let chosenItem;
+          for (let i = 0; i < res.length; i++) {
+            if (res[i].productId == answer.productId) {
+              chosenItem = res[i];
+              storeQty = res[i].qty;
 
-//display all items from database products table (in table(id/name/price/qty) >> using console.table npm package)
-//connection.query(SELECT WHERE…)
-//NEW console.table npm package NEW//
-// inquirer
-// inquirer.prompt ().then()
-// .validate()????? For must be a number equal to the number of items in the table printed through console.table
-// THIS IS SIMILAR TO THE SOLUTION ERIC SHOWED FOR GREATBAY inClassActivity
-// --look for isNaN for quantity must be a number
-// If console.table takes an array- we can use array.length for the validation check  where 0 > inquirerAnswer > array.length
+            }
+          }
+          
+          console.log(storeQty);
+          
+          let remainingQty = parseInt(storeQty - answer.qty);
 
-   // prompt "Which item would you like to buy"
-   // prompt "How many would you like"
+          if (remainingQty < 0) {
+            console.log(`
+Insufficient quantity!
+Sorry, we only have ${storeQty} in stock.
+            `)
+            restart();
+          } else {
+            console.log(`Database qty remaining: ${remainingQty}`);
+
+            // ParseFloat ( total = itemCost * customer Quantity )
+            // show the total cost of their purchase
+            let total = parseFloat(chosenItem.price * answer.qty);
+            console.log(`
+Your purchase has been processed!
+Your total is $${total}.
+        `);
+
+            dbLayer.checkout(answer, remainingQty, function (err, res) {
+              if (err) throw err;
+              restart();
+            });
+
+          }
+        })
+
+      })
+}
+
+function restart(){
+  inquirer
+    .prompt([
+      {
+        name: "confirm",
+        type: "confirm",
+        message: "Would you like to continue shopping?"
+      }
+    ])
+    .then(function(answer){
+      switch (answer.confirm){
+        case true:
+          console.log("ash")
+          return buy();
+        case false:
+          return quit();
+      }
+    })
+}
+
 // question? [Type ‘Q’ to Quit]. << not in instructions, but how does //program end if we recall wouldYouLikeToBuy()
-
-// read value of selection based on number input used as index of the array passed to console.table (array[response.itemSelected].itemId)
-
-   // read data from the table
-       // if customerQuantity <= inventory then allow the sale
-           // update SQL Database to reflect current inventory
-// ^probably its own function (purchase(itemId, quantity);
-
-           // show the total cost of their purchase
-               // ParseFloat ( total = itemCost * customer Quantity )
-			//print success message with total cost of purchase
-       // else
-           // log `Insufficient quantity!`
-           // prevent order from going through
-           // offer option to buy what's available
-		// if buy whats available>>>
-		// calls purchase() with parameters (itemId, qty as recieved from database query)
-
-// else just recall the function
-
-// In both cases - reprompt with print updated table, prompt wouldYouLikeToBuy();
+function quit(){
+  console.log("Thank you come again!");
+  connection.end();
+}
