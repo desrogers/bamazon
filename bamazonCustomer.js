@@ -15,7 +15,7 @@ const dbLayer = new DBLayer(connection);
 connection.connect(function (err) {
   if (err) throw err;
 
-  console.log("\nWelcome to BAMazon.js!\n");
+  console.log("\nHi! Welcome to BAMazon.js!\n");
 
   buy();
 });
@@ -23,7 +23,6 @@ connection.connect(function (err) {
 function buy() {
   dbLayer.readProducts(function (err, res) {
     if (err) throw err;
-    console.log('hi');
     inquirer
       .prompt([
         {
