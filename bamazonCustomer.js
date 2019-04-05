@@ -51,8 +51,6 @@ function buy() {
             }
           }
           
-          console.log(storeQty);
-          
           let remainingQty = parseInt(storeQty - answer.qty);
 
           if (remainingQty < 0) {
@@ -62,9 +60,7 @@ Sorry, we only have ${storeQty} in stock.
             `)
             restart();
           } else {
-            console.log(`Database qty remaining: ${remainingQty}`);
 
-            // ParseFloat ( total = itemCost * customer Quantity )
             // show the total cost of their purchase
             let total = parseFloat(chosenItem.price * answer.qty);
             console.log(`
@@ -95,7 +91,6 @@ function restart(){
     .then(function(answer){
       switch (answer.confirm){
         case true:
-          console.log("ash")
           return buy();
         case false:
           return quit();

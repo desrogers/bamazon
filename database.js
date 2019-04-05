@@ -14,9 +14,6 @@ const DBLayer = function DBLayer(connection) {
   };
 
   this.checkout = function (answer, remainingQty, callback) {
-    console.log(answer);
-    console.log(remainingQty);
-    console.log(answer.productId);
     
     connection.query(
       `UPDATE products SET ? WHERE ?`,
@@ -30,7 +27,6 @@ const DBLayer = function DBLayer(connection) {
       ],
       function (err, res) {
         if (err) throw err;
-        console.log("asdf");
         callback(err, res);
       })
   };
