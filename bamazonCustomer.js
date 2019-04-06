@@ -17,7 +17,7 @@ connection.connect(function (err) {
 
   console.log("\n\n");
   console.log(`
-          Hi! Welcome to BAMazon!
+          Hi! Welcome to bamazon!
   `);
 
   buy();
