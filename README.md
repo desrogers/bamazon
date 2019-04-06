@@ -14,7 +14,7 @@ Screenshot of the 0.1.1 release
 [![bamazon Screenshot](https://i.gyazo.com/cc897f1d47f0f63d682ea8da2f57adb9.png)](https://gyazo.com/cc897f1d47f0f63d682ea8da2f57adb9)
 
 Screencast of bamazon's 'Customer' mode:  
-
+* [Release (2019-04-05)](https://drive.google.com/file/d/1aooTCGbsGDN2hem4IcKyRL0sVU2YdqBn/view)
 
 # Installation
 Being that bamazon is a node app you have the install node.js and npm. For instructions see:  
