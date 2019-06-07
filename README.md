@@ -1,5 +1,5 @@
 # bamazon
-bamazon is an storefront CLI app inspired by Amazon.
+bamazon is a storefront command-line Node.js app inspired by Amazon.
 
 ## DISCLAIMER
 If bamazon blows up your computer, loses your job or just deletes all your purchase history, I am NOT liable for anything.
