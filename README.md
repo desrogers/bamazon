@@ -55,7 +55,7 @@ node bamazonCustomer.js
 ## Bugs and Feedback
 * Report bugs in the [issue tracker](https://github.com/dezrogers/bamazon-app/issues) on github.
 * Clone, fix, and then send me a pull request, if you're feeling generous.
-* If you have any questions, or would like to discuss bamazon, contact me [here](https://dezrogers.github.io/Portfolio/contact.html).
+* If you have any questions, or would like to discuss bamazon, contact me [here](https://dezrogers.com).
 
 ## Credits
 Thanks to James Neese for his contributions to the database schema and providing other resources during the beginning phase of bamazon's creation.
